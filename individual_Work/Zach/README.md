@@ -1,6 +1,8 @@
 # Database Functionality
 
-This projects database uses a SQLite3 relational database. 
+This projects database uses a SQLite3 relational database. Using SQLite enabled us to rapidly prototype and remove the complexity of hosting the data.
+
+SQLite is built into Python and will allow my group members to work with the database conveniently.
 
 The database should be capable of the following : 
 
@@ -14,6 +16,7 @@ The database should be capable of the following :
 
 * Finding employees to fit specific gaps  by allowing employer to make their own queries
 
+
 # Database Design
 
 In it's current state the database consist of 4 tables
@@ -25,6 +28,9 @@ In it's current state the database consist of 4 tables
 * Login
 
 * PrefferedOff
+
+These 4 tables allow for the rapid recall and querying of data, employee availability will be able to be looked up
+easily in the event of needing a stand-in employee.
 
 ## Employee Table Schema
 
@@ -38,6 +44,10 @@ In it's current state the database consist of 4 tables
 
 * role
 
+This table is the primary index for employee infromation, this table will likely expand as Manni and Adam need more
+specific data. As of right now it is used to relate employees to their respective
+availability entries in the availability table.
+
 ## Availability Table
 
 * avail_id(PRIMARY KEY)
@@ -50,6 +60,9 @@ In it's current state the database consist of 4 tables
 
 * weekday
 
+This table holds all entries for each employee's weekly availability, using an availability ID in conjunction with
+employee ID employees can log their availability.
+
 ## Login Table
 
 * Username(PRIMARY_KEY)
@@ -58,4 +71,6 @@ In it's current state the database consist of 4 tables
 
 * email
 
+This table is the most simple of the 3 and will not need to reference data
+outside of itself, passwords will be hashed using php.
 
