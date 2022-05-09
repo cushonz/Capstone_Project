@@ -1,6 +1,9 @@
+<<<<<<< HEAD
 
 
 
+=======
+>>>>>>> 27c4624928b2be2d9f251529f094d50f44d05738
 class salesPredicter:
     data = [0]
     weekdayOffset = 0
@@ -18,7 +21,11 @@ class salesPredicter:
     def averageSales(self, i):
         sum = 0
         divBy = 0
+<<<<<<< HEAD
         for x in range(1,10):
+=======
+        for x in range(1,14):
+>>>>>>> 27c4624928b2be2d9f251529f094d50f44d05738
             if (self.data[i-x] > 0):
                 sum += self.data[i-x]
                 divBy += 1
@@ -39,6 +46,11 @@ class salesPredicter:
             self.effectiveLastyearWeight = 0
             return 1
 
+<<<<<<< HEAD
+=======
+    def calcWeekMod():
+        pass
+>>>>>>> 27c4624928b2be2d9f251529f094d50f44d05738
 
     def dayMod(self, i):
         return self.weekdayMod[(i+self.weekdayOffset)%7]
@@ -46,6 +58,12 @@ class salesPredicter:
     def train(self):
         pass
 
+<<<<<<< HEAD
+=======
+    def weigh(self):
+        pass
+
+>>>>>>> 27c4624928b2be2d9f251529f094d50f44d05738
     def getData(self):
         self.data = [1,2,2,2,3,2,1,
                      1,2,1,2,3,2,1,
@@ -214,7 +232,12 @@ wasit = []
 for i in range(370, 400):
     it.append(doit.predictSales(i))
     reallyit.append(doit.data[i])
+<<<<<<< HEAD
     wasit.append(doit.data[i-356])
+=======
+    if i >356:
+        wasit.append(doit.data[i-356])
+>>>>>>> 27c4624928b2be2d9f251529f094d50f44d05738
 print(it)
 print(reallyit)
 print(wasit)
