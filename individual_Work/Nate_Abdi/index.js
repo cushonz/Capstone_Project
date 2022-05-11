@@ -6,7 +6,7 @@ import { StrictMode } from "react";
 
     WebFont.load({
         google: {
-            families: ['Poppins', "Actor:400"]
+            families: ['Poppins', "Raleway:400"]
         }
       });
 
