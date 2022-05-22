@@ -1,74 +1,68 @@
 import React from "react";
 import styled from "styled-components";
-export const SignUpPage1 = ({}) => {
+export const SettingsPage = ({}) => {
   return (
-    <SignUpPageRoot>
+    <SettingsPageRoot>
       <PageBackground>
         <SidebarBackground>
           <ScheduleBackground>
             <ScheduleIcon
-              src={"https://file.rendit.io/n/js59IPNrru1nksEe79Qm.svg"}
+              src={"https://file.rendit.io/n/z12vx9aEXdjVShzOaSCR.svg"}
             />
             <Text1>Schedule</Text1>
           </ScheduleBackground>
           <EmployeesBackground>
             <EmployeesIcon
-              src={"https://file.rendit.io/n/MX6uMxx7SPbH5sgX8JIy.svg"}
+              src={"https://file.rendit.io/n/RSuuyKJlRYBVNJNv6uAL.svg"}
             />
             <Text2>Employees</Text2>
           </EmployeesBackground>
           <WhiteFlexRow>
             <FreshProduceIcon
-              src={"https://file.rendit.io/n/xVM3cdnlZMOOfAbXajmi.png"}
+              src={"https://file.rendit.io/n/H5PZjrXqfOOxEy8bJoyJ.png"}
             />
             <Text2>Fresh Produce</Text2>
           </WhiteFlexRow>
-          <BusinessInfo1>
-            <FlexRow>
-              <BusinessInfoIcon
-                src={"https://file.rendit.io/n/d84UhfEsiYIUrLVT65I2.svg"}
-              />
-              <Text4 color={"#000000"}>Business Info</Text4>
-            </FlexRow>
-          </BusinessInfo1>
+          <BusinessInfo1 />
           <SettingsBackground>
             <SettingsIcon
-              src={"https://file.rendit.io/n/y3BzBbBdlTdLYaGa7VMB.svg"}
+              src={"https://file.rendit.io/n/MST9BkKL7lj0FJXg6B5S.svg"}
             />
-            <Text4 color={"#ffffff"}>Settings</Text4>
+            <Text4>Settings</Text4>
           </SettingsBackground>
         </SidebarBackground>
         <FlexColumn>
-          <WhiteText>Sign Up</WhiteText>
-          <SunsetOrangeFlexColumn margin={"0px 0px 48px 0px"}>
-            <Background1>
-              <Text6 width={"103px"}>Email</Text6>
-            </Background1>
-          </SunsetOrangeFlexColumn>
-          <SunsetOrangeFlexColumn margin={"0px 0px 48px 0px"}>
-            <Background1>
-              <Text6 width={"283px"}>Phone Number</Text6>
-            </Background1>
-          </SunsetOrangeFlexColumn>
-          <SunsetOrangeFlexColumn margin={"0px 0px 48px 0px"}>
-            <Background1>
-              <Text6 width={"180px"}>Password</Text6>
-            </Background1>
-          </SunsetOrangeFlexColumn>
-          <EmailPanel3>
-            <SunsetOrangeFlexColumn margin={"0"}>
-              <Background1>
-                <Text6 width={"336px"}>Confirm Password</Text6>
-              </Background1>
-            </SunsetOrangeFlexColumn>
-            <MahoganyText>Sign Up</MahoganyText>
-          </EmailPanel3>
+          <WhiteText>Settings</WhiteText>
+          <SettingsPanels>
+            <SunsetOrangeFlexRow>
+              <Text5 placeholder={"email: testemail@test.com"} />
+              <Text6>change email</Text6>
+              <Image1
+                src={"https://file.rendit.io/n/wvvpuij3yD0roh295CWZ.svg"}
+              />
+            </SunsetOrangeFlexRow>
+            <SunsetOrangeFlexRow1>
+              <FlexColumn1>
+                <Text7>change phone number</Text7>
+                <Text8 width={"554px"}>Phone Number: 123-456-7890</Text8>
+              </FlexColumn1>
+              <Image1
+                src={"https://file.rendit.io/n/wvvpuij3yD0roh295CWZ.svg"}
+              />
+            </SunsetOrangeFlexRow1>
+            <SunsetOrangeFlexRow2>
+              <Text8 width={"333px"}>Change Password</Text8>
+            </SunsetOrangeFlexRow2>
+            <SunsetOrangeFlexRow2>
+              <Text8 width={"146px"}>Log out</Text8>
+            </SunsetOrangeFlexRow2>
+          </SettingsPanels>
         </FlexColumn>
       </PageBackground>
-    </SignUpPageRoot>
+    </SettingsPageRoot>
   );
 };
-const SignUpPageRoot = styled.div`
+const SettingsPageRoot = styled.div`
   background-color: #ffffff;
   display: flex;
   overflow: hidden;
@@ -84,7 +78,7 @@ const PageBackground = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
-  gap: 283px;
+  gap: 284px;
   align-items: center;
   padding: 0px 4px;
 `;
@@ -155,47 +149,42 @@ const FreshProduceIcon = styled.img`
 `;
 const BusinessInfo1 = styled.div`
   box-shadow: 0px 16px 31px 0px rgba(0, 0, 0, 0.01);
+  width: 245px;
+  height: 70px;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
   margin: 0px 0px 20px 0px;
 `;
-const FlexRow = styled.div`
-  width: 201px;
-  background-image: url("https://file.rendit.io/n/3dBfn4QaRRDpjjB7W5tD.svg");
-  background-size: cover;
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  gap: 24px;
-  align-items: center;
-  padding: 21px 22px 17px 22px;
-`;
-const BusinessInfoIcon = styled.img`
-  width: 36px;
-  height: 32px;
-`;
 const SettingsBackground = styled.div`
-  width: 197px;
+  width: 196.12px;
   background-color: #000000;
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
-  gap: 26.9px;
+  gap: 26.43px;
   align-items: center;
   border-radius: 18px;
-  padding: 21px 24px 17px 24px;
+  padding: 21px 24.44px 17px 24.44px;
 `;
 const SettingsIcon = styled.img`
-  width: 31.1px;
+  width: 31.13px;
   height: 32px;
+`;
+const Text4 = styled.div`
+  font-size: 18px;
+  font-family: Raleway;
+  font-weight: 400;
+  color: #ffffff;
+  align-self: flex-start;
+  margin: 4px 0px 0px 0px;
 `;
 const FlexColumn = styled.div`
   width: 990px;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  gap: 180px;
   flex-grow: 1;
   align-items: center;
   padding: 57px 0px;
@@ -213,73 +202,108 @@ const WhiteText = styled.div`
   justify-content: center;
   border-radius: 34px;
   padding: 54px 0px;
-  margin: 0px 0px 180px 0px;
 `;
-const EmailPanel3 = styled.div`
+const SettingsPanels = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 96px;
-  justify-content: center;
+  gap: 54px;
+  justify-content: space-between;
   align-items: center;
 `;
-const MahoganyText = styled.div`
-  display: flex;
-  font-size: 45px;
-  font-family: Raleway;
-  font-weight: 400;
+const SunsetOrangeFlexRow = styled.div`
   border-width: 1px;
   border-style: solid;
   box-shadow: 0px 1px 13px 0px rgba(0, 0, 0, 0.06);
-  width: 526px;
-  height: 53px;
-  background-color: #c12026;
+  width: 974px;
+  height: 80px;
+  background-color: #ff6868;
+  display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: flex-end;
+  align-items: flex-start;
   border-radius: 10px;
-  padding: 32px 0px;
+  padding: 6px 8px 31px 8px;
+`;
+const Text5 = styled.input`
+  width: 483px;
+  height: 55px;
+  font-size: 40px;
+  font-family: Raleway;
+  font-weight: 400;
+  align-self: flex-end;
+  margin: 0px 94px 0px 0px;
+  padding: 0px;
+  border-width: 0px;
+  background: none;
+  :: placeholder {
+    color: undefined;
+  }
+  display: inline-block;
+  outline-width: 0px;
+`;
+const Text6 = styled.div`
+  font-size: 20px;
+  font-family: Raleway;
+  font-weight: 400;
+  margin: 0px 5px 0px 0px;
+`;
+const SunsetOrangeFlexRow1 = styled.div`
+  border-width: 1px;
+  border-style: solid;
+  box-shadow: 0px 1px 13px 0px rgba(0, 0, 0, 0.06);
+  width: 982px;
+  background-color: #ff6868;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  gap: 9px;
+  align-items: flex-start;
+  border-radius: 10px;
+  padding: 7px 4px 31px 4px;
+`;
+const FlexColumn1 = styled.div`
+  align-self: stretch;
+  width: 738px;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  justify-content: center;
+  flex-grow: 1;
+  align-items: flex-start;
+`;
+const Text7 = styled.div`
+  font-size: 20px;
+  font-family: Raleway;
+  font-weight: 400;
+  align-self: flex-end;
 `;
 const Text2 = styled.div`
   font-size: 18px;
   font-family: Raleway;
   font-weight: 400;
 `;
-const Text4 = styled.div`
-  font-size: 18px;
-  font-family: Raleway;
-  font-weight: 400;
-  align-self: flex-start;
-  margin: 4px 0px 0px 0px;
-  color: ${(props) => props.color};
+const Image1 = styled.img`
+  width: 21px;
+  height: 21px;
+  margin: 1px 0px 0px 0px;
 `;
-const SunsetOrangeFlexColumn = styled.div`
-  border-width: 1px;
-  border-style: solid;
-  box-shadow: 0px 1px 13px 0px rgba(0, 0, 0, 0.06);
-  height: 117px;
-  background-color: #ff6868;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  border-radius: 10px;
-  padding: 0px 12px;
-  margin: ${(props) => props.margin};
-`;
-const Background1 = styled.div`
-  box-shadow: 0px 16px 31px 0px rgba(0, 0, 0, 0.01);
-  width: 930px;
-  background-color: #ffffff;
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: center;
-  border-radius: 34px;
-  padding: 18px 18px 17px 18px;
-`;
-const Text6 = styled.div`
+const Text8 = styled.div`
   height: 55px;
   font-size: 40px;
   font-family: Raleway;
   font-weight: 400;
   width: ${(props) => props.width};
+`;
+const SunsetOrangeFlexRow2 = styled.div`
+  border-width: 1px;
+  border-style: solid;
+  box-shadow: 0px 1px 13px 0px rgba(0, 0, 0, 0.06);
+  width: 990px;
+  background-color: #ff6868;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  padding: 31px 0px;
 `;

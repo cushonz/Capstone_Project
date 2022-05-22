@@ -1,80 +1,74 @@
 import React from "react";
 import styled from "styled-components";
-export const LoginInView1 = ({}) => {
-  const MahoganyFlexRowFunction = (e, name) => {
+export const SignUpPage = ({}) => {
+  const MahoganyTextFunction = (e, name) => {
     alert(`${name} was clicked`);
   };
   return (
-    <LoginInViewRoot>
+    <SignUpPageRoot>
       <PageBackground>
         <SidebarBackground>
           <ScheduleBackground>
             <ScheduleIcon
-              src={"https://file.rendit.io/n/OXgiadnZPbdKbCIz4wIf.svg"}
+              src={"https://file.rendit.io/n/lN8zNVsB5pKQs5TTnxSr.svg"}
             />
             <Text1>Schedule</Text1>
           </ScheduleBackground>
           <EmployeesBackground>
             <EmployeesIcon
-              src={"https://file.rendit.io/n/uHl2bGxHjL4lWJBKLdRi.svg"}
+              src={"https://file.rendit.io/n/Y6TQ0rvlPESJRzezgobB.svg"}
             />
             <Text2>Employees</Text2>
           </EmployeesBackground>
           <WhiteFlexRow>
             <FreshProduceIcon
-              src={"https://file.rendit.io/n/3kvZTZUNN859T2GeEfaD.png"}
+              src={"https://file.rendit.io/n/wpdygVzQ0skdsrqoQ5dj.png"}
             />
             <Text2>Fresh Produce</Text2>
           </WhiteFlexRow>
-          <BusinessInfo1>
-            <FlexRow>
-              <BusinessInfoIcon
-                src={"https://file.rendit.io/n/ap6RXqSifSWcRec4Fu1P.svg"}
-              />
-              <Text4 color={"#000000"}>Business Info</Text4>
-            </FlexRow>
-          </BusinessInfo1>
+          <BusinessInfo1 />
           <SettingsBackground>
             <SettingsIcon
-              src={"https://file.rendit.io/n/n2njEm7ZlrX3ik0jr0TQ.svg"}
+              src={"https://file.rendit.io/n/2O6TEfWxEKjKn16wqVx2.svg"}
             />
-            <Text4 color={"#ffffff"}>Settings</Text4>
+            <Text4>Settings</Text4>
           </SettingsBackground>
         </SidebarBackground>
         <FlexColumn>
-          <Name1 src={"https://file.rendit.io/n/OjzQnjz8UbTS3wInKHgg.png"} />
-          <Key src={"https://file.rendit.io/n/ROYzUOk9daSFUdOBMTDk.png"} />
+          <WhiteText>Sign Up</WhiteText>
+          <SignUpPanels>
+            <SunsetOrangeFlexColumn margin={"0px 0px 48px 0px"}>
+              <Background1>
+                <Text5 width={"103px"}>Email</Text5>
+              </Background1>
+            </SunsetOrangeFlexColumn>
+            <SunsetOrangeFlexColumn margin={"0px 0px 48px 0px"}>
+              <Background1>
+                <Text5 width={"283px"}>Phone Number</Text5>
+              </Background1>
+            </SunsetOrangeFlexColumn>
+            <SunsetOrangeFlexColumn margin={"0px 0px 48px 0px"}>
+              <Background1>
+                <Text5 width={"180px"}>Password</Text5>
+              </Background1>
+            </SunsetOrangeFlexColumn>
+            <SunsetOrangeFlexColumn margin={"0px 0px 96px 0px"}>
+              <Background1>
+                <Text5 width={"336px"}>Confirm Password</Text5>
+              </Background1>
+            </SunsetOrangeFlexColumn>
+            <MahoganyText
+              onClick={(e) => MahoganyTextFunction(e, "MahoganyText")}
+            >
+              Sign Up
+            </MahoganyText>
+          </SignUpPanels>
         </FlexColumn>
-        <FlexColumn1>
-          <Background>
-            <Text6 placeholder={"Login"} />
-            <Text7>Sign in with your account </Text7>
-          </Background>
-          <SunsetOrangeFlexColumn margin={"0px 0px 43px 0px"}>
-            <Background1>
-              <Text8 width={"103px"}>Email</Text8>
-            </Background1>
-          </SunsetOrangeFlexColumn>
-          <SunsetOrangeFlexColumn margin={"0px 0px 72px 0px"}>
-            <Background1>
-              <Text8 width={"180px"}>Password</Text8>
-            </Background1>
-          </SunsetOrangeFlexColumn>
-          <MahoganyFlexRow
-            onClick={(e) => MahoganyFlexRowFunction(e, "MahoganyFlexRow")}
-          >
-            <Login1 placeholder={"Login\n"} />
-          </MahoganyFlexRow>
-          <Paragraph>I forgot my password. Click here to reset</Paragraph>
-          <SunglowFlexRow>
-            <Text8 width={"410px"}>Register New Account </Text8>
-          </SunglowFlexRow>
-        </FlexColumn1>
       </PageBackground>
-    </LoginInViewRoot>
+    </SignUpPageRoot>
   );
 };
-const LoginInViewRoot = styled.div`
+const SignUpPageRoot = styled.div`
   background-color: #ffffff;
   display: flex;
   overflow: hidden;
@@ -90,19 +84,19 @@ const PageBackground = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
+  gap: 283px;
+  align-items: center;
   padding: 0px 4px;
 `;
 const SidebarBackground = styled.div`
   height: 1376px;
   background-color: #ffffff;
   display: flex;
-  align-self: center;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
   border-radius: 2px;
   padding: 202px 40px 202px 60px;
-  margin: 0px 230px 0px 0px;
 `;
 const ScheduleBackground = styled.div`
   width: 191px;
@@ -161,172 +155,92 @@ const FreshProduceIcon = styled.img`
 `;
 const BusinessInfo1 = styled.div`
   box-shadow: 0px 16px 31px 0px rgba(0, 0, 0, 0.01);
+  width: 245px;
+  height: 70px;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
   margin: 0px 0px 20px 0px;
 `;
-const FlexRow = styled.div`
-  width: 201px;
-  background-image: url("https://file.rendit.io/n/KRceFvgdm7dTIDfX3ABI.svg");
-  background-size: cover;
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  gap: 24px;
-  align-items: center;
-  padding: 21px 22px 17px 22px;
-`;
-const BusinessInfoIcon = styled.img`
-  width: 36px;
-  height: 32px;
-`;
 const SettingsBackground = styled.div`
-  width: 196.12px;
+  width: 197px;
   background-color: #000000;
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
-  gap: 26.46px;
+  gap: 26.87px;
   align-items: center;
   border-radius: 18px;
-  padding: 21px 24.44px 17px 24.44px;
+  padding: 21px 24px 17px 24px;
 `;
 const SettingsIcon = styled.img`
-  width: 31.1px;
+  width: 31.13px;
   height: 32px;
 `;
-const FlexColumn = styled.div`
-  width: 54px;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  gap: 104px;
-  flex-grow: 1;
-  align-items: center;
-  padding: 453px 0px;
-  margin: 0px 17px 0px 0px;
-`;
-const Name1 = styled.img`
-  width: 45px;
-  height: 40px;
+const Text4 = styled.div`
+  font-size: 18px;
+  font-family: Raleway;
+  font-weight: 400;
+  color: #ffffff;
   align-self: flex-start;
+  margin: 4px 0px 0px 0px;
 `;
-const Key = styled.img`
-  width: 54px;
-  height: 72px;
-`;
-const FlexColumn1 = styled.div`
+const FlexColumn = styled.div`
   width: 990px;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  gap: 180px;
   flex-grow: 1;
   align-items: center;
   padding: 57px 0px;
 `;
-const Background = styled.div`
-  box-shadow: 0px 1px 13px 0px rgba(0, 0, 0, 0.06);
-  height: 129px;
-  background-color: #ffffff;
+const WhiteText = styled.div`
   display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  gap: 5px;
-  align-items: center;
-  border-radius: 34px;
-  padding: 19px 15px;
-  margin: 0px 0px 191px 0px;
-`;
-const Text6 = styled.input`
-  width: 130px;
   font-size: 50px;
   font-family: Raleway;
   font-weight: 400;
-  padding: 0px;
-  border-width: 0px;
-  background: none;
-  :: placeholder {
-    color: undefined;
-  }
-  display: inline-block;
-  outline-width: 0px;
+  box-shadow: 0px 1px 13px 0px rgba(0, 0, 0, 0.06);
+  width: 516px;
+  height: 59px;
+  background-color: #ffffff;
+  flex-direction: row;
+  justify-content: center;
+  border-radius: 34px;
+  padding: 54px 0px;
 `;
-const Text7 = styled.div`
-  width: 521px;
+const SignUpPanels = styled.div`
+  height: 825px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+const MahoganyText = styled.button`
+  display: flex;
   font-size: 45px;
   font-family: Raleway;
   font-weight: 400;
-  white-space: pre-wrap;
-`;
-const MahoganyFlexRow = styled.button`
   border-width: 1px;
   border-style: solid;
   box-shadow: 0px 1px 13px 0px rgba(0, 0, 0, 0.06);
   width: 526px;
+  height: 53px;
   background-color: #c12026;
-  display: flex;
   flex-direction: row;
   justify-content: center;
-  align-items: center;
   border-radius: 10px;
-  padding: 36px 0px 37px 0px;
-  margin: 0px 0px 66px 0px;
+  padding: 32px 0px;
   box-sizing: content-box;
   cursor: pointer;
   &: hover {
     box-shadow: inset 0 0 100px 100px rgba(255, 255, 255, 0.3);
   }
 `;
-const Login1 = styled.input`
-  width: 117px;
-  height: 44px;
-  font-size: 45px;
-  font-family: Raleway;
-  font-weight: 400;
-  padding: 0px;
-  border-width: 0px;
-  background: none;
-  :: placeholder {
-    color: undefined;
-  }
-  display: inline-block;
-  outline-width: 0px;
-`;
-const Paragraph = styled.div`
-  width: 743px;
-  height: 55px;
-  font-size: 40px;
-  font-family: Raleway;
-  font-weight: 400;
-  margin: 0px 0px 66px 0px;
-`;
-const SunglowFlexRow = styled.div`
-  border-width: 1px;
-  border-style: solid;
-  box-shadow: 0px 1px 13px 0px rgba(0, 0, 0, 0.06);
-  width: 990px;
-  background-color: #fabb18;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  border-radius: 10px;
-  padding: 31px 0px;
-`;
 const Text2 = styled.div`
   font-size: 18px;
   font-family: Raleway;
   font-weight: 400;
-`;
-const Text4 = styled.div`
-  font-size: 18px;
-  font-family: Raleway;
-  font-weight: 400;
-  align-self: flex-start;
-  margin: 4px 0px 0px 0px;
-  color: ${(props) => props.color};
 `;
 const SunsetOrangeFlexColumn = styled.div`
   border-width: 1px;
@@ -353,7 +267,7 @@ const Background1 = styled.div`
   border-radius: 34px;
   padding: 18px 18px 17px 18px;
 `;
-const Text8 = styled.div`
+const Text5 = styled.div`
   height: 55px;
   font-size: 40px;
   font-family: Raleway;
