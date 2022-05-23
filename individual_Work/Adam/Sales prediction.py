@@ -36,11 +36,12 @@ class salesData:
 
         lastyear = date.today() - date(self.workingdate.year-1, self.workingdate.month, self.workingdate.day)
         daysSince = date.today() - self.workingdate
+        offset = (6-date.today().weekday())
         
-        self.dataLastYear = self.getMockData(lastyear.days+7, lastyear.days-self.daysToPredict).copy() #the days from last year
-        self.dataLastMonth = self.getMockData(calced2.days+7, calced2.days-self.daysToPredict) #xth weekday of the previous month
-        self.dataCurrent = self.getMockData(daysSince.days+14+self.daysToPredict,
-                                            daysSince.days).copy() #last 14 days
+        self.dataLastYear = self.getMockData(lastyear.days+7+offset, lastyear.days-self.daysToPredict+offset).copy() #the days from last year
+        self.dataLastMonth = self.getMockData(calced2.days+7+offset, calced2.days-self.daysToPredict+offset) #xth weekday of the previous month
+        self.dataCurrent = self.getMockData(daysSince.days+14+self.daysToPredict+offset,
+                                            daysSince.days+offset).copy() #last 14 days
 
     def getMockData(self, i:int) -> list:
         return self.getMockData(self, i, i)
@@ -201,7 +202,7 @@ class salesData:
                 0,5,8,12,17,13,0,
                 0,4,6,13,11,12,0,
                 0,5,8,13,11,12,0,
-                0,4,5,13,17,9,0,]
+                0,4,5,13,17,9,0]
         return data[len(data) - fro : len(data) - to:1]
 
 
@@ -287,11 +288,15 @@ class salesPredicter:
         return ret[7:7+self.data.daysToPredict:1]
 
     def calcWeekMod(self, avg):
+        self.data.weekday = self.data.workingdate.weekday()+1
         self.weekdayMod = [0,0,0,0,0,0,0]
-        for x in range(len(self.data.dataCurrent))[::-1]:
-            self.weekdayMod[(x+self.data.weekday+1)%7] += self.data.dataCurrent[x]
+        weekdayAdded = [0,0,0,0,0,0,0]
+        for x in range(1,14+self.data.daysToPredict):
+            self.weekdayMod[(len(self.data.dataCurrent)-(x+self.data.weekday))%7] += self.data.dataCurrent[len(self.data.dataCurrent)-x]
+            weekdayAdded[(len(self.data.dataCurrent)-(x+self.data.weekday))%7] += 1
+
         for x in range(len(self.weekdayMod)):
-            self.weekdayMod[x] /= 2
+            self.weekdayMod[x] /= weekdayAdded[x]
             self.weekdayMod[x] /= avg
     
     def dayMod(self, i:int):
@@ -316,7 +321,7 @@ class salesPredicter:
 
 
 class superEgo:
-    def predict(self, sales):
+    def predict(self, sales:salesData):
         predictions = []
         sales.getData()
         for x in self.pop:
@@ -333,7 +338,7 @@ class superEgo:
 
         return final
 
-    def predictTop(self, sales):
+    def predictTop(self, sales:salesData):
         sales.getData()
         self.pop.sort(key= lambda x: x.fit)
         self.pop[0].data = sales
@@ -342,9 +347,10 @@ class superEgo:
     def train(self, gens:int, pop:int):
         self.rand = Random()
         self.rand.seed()
-        self.generate(pop)
+        self.generate(pop, gens)
         for x in range(gens):
-            self.evaluate()
+            last = self.adjust()
+            self.evaluate(last)
             self.crossover()
             self.mutate()
 
@@ -363,7 +369,7 @@ class superEgo:
                 self.pop[x].LastyearWeight = w[1]
                 self.pop[x].lastMonthWeigh = w[2]
 
-    def evaluate(self):
+    def evaluate(self, sold:int):
         for x in range(len(self.pop)):
             self.pop[x].fit = 0
             prediction = self.pop[x].predictSales()
@@ -378,7 +384,7 @@ class superEgo:
 
     def mutate(self):
         for x in range(len(self.pop)):
-            if self.rand.random():
+            if self.rand.random() > .7:
                 f = self.pop[x].fit
                 w = (self.pop[x].weekdayWeight, self.pop[x].LastyearWeight, self.pop[x].lastMonthWeight)
                 self.pop[x].weekdayWeight = self.rand.random() if self.rand.random() < .8 else self.pop[x].weekdayWeight
@@ -391,8 +397,16 @@ class superEgo:
                     self.pop[x].LastyearWeight = w[1]
                     self.pop[x].lastMonthWeigh = w[2]
 
-    def generate(self, pop):
-        data = salesData(365, "", date(2021,1,1))
+    def adjust(self) -> list:
+        self.pop[0].data.workingdate += timedelta(1)
+        ret = self.pop[0].data.dataCurrent[len(self.pop[0].data.dataCurrent)-8:len(self.pop[0].data.dataCurrent)-1:1]
+        self.pop[0].data.dataLastYear.pop(len(self.pop[0].data.dataLastYear)-1)
+        self.pop[0].data.dataLastMonth.pop(len(self.pop[0].data.dataLastMonth)-1)
+        self.pop[0].data.dataCurrent.pop(len(self.pop[0].data.dataCurrent)-1)
+        return ret
+
+    def generate(self, pop:int, gens:int):
+        data = salesData(gens+7+1, "", date(2021,1,1))
         data.getData()
         self.pop = []
         for x in range(pop):
@@ -408,7 +422,7 @@ tommorow = date.today() + timedelta(1)
 
 super = superEgo()
 
-super.train(200, 200)
+super.train(200, 1)
 
 print(super.predict(salesData(7, "", date.today())))
 print(super.predictTop(salesData(7, "", date.today())))
