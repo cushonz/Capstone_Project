@@ -1,3 +1,7 @@
-Basically so far, these two files do a task of taking employee availabilities and making a sample database that makes tables of availabilities. 
+So this algorithm right now, takes in availabilities from how many ever employees you input are working in the restaurant.
 
-What is left on this. -- take all the availabilities and make a schedule out of it.
+It then takes each availability and puts it into the schedule list.
+
+What is left to do -- take info from the database instead of inputing values yourself.
+
+What also needs to be implemented -- take the info and avoid conflicts which will make an actual schedule and not overlap schedules.
