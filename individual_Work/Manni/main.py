@@ -10,7 +10,7 @@ of them where there is no overlapping things going on
 
 from calendar import weekday
 from functools import total_ordering
-from tkinter.tix import DisplayStyle
+#from tkinter.tix import DisplayStyle
 from urllib.robotparser import RobotFileParser
 from employee import Employee # importing our 'Employee' class
 import sqlite3 # importing SQLite3 for Python so we can work with our database 'newDB'
@@ -18,70 +18,88 @@ import random
 
 from workshift import workshift
 
-'''
 DB_PATH = "./newDB.sqlite3" # relative path to our database
 
 def database_connection(path):
     conn = sqlite3.connect(path)  # connection to our DB
     return conn
 
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    # get DB cursor so we can execute SQL queries to our DB
-    db_conn = database_connection(DB_PATH) # our DB connection object
-    db_cursor = db_conn.cursor() # our cursor obj
-    
-    # create a 'schedule' table with columns 'start_time' (int), 'end_time' (int), and 'weekday' (str), and a primary key column
-    schedule = """
-    CREATE TABLE IF NOT EXISTS schedule(
-        id integer PRIMARY KEY, 
-        start_time integer NOT NULL,
-        end_time integer NOT NULL,
-        weekday text NOT NULL
-    )
-    """
-    db_cursor.execute(schedule)
-    db_cursor.execute("SELECT name FROM sqlite_master WHERE type='table'") # this returns all the tables in the currently connected DB
-    print(db_cursor.fetchall()) # prints the name of each table in the DB
+# (24-hr time, 8 = 8am, 18 = 6pm, basically if it's > 12 it's PM and restaurant isn't open @ like 1am)
+# we want to create the logic for the schedule, another teammate will read the employee/schedule info from the database
 
-    # insert some user availability data into 'schedule' table
-    insert_data_query = "INSERT INTO schedule (start_time, end_time, weekday) VALUES (?, ?, ?)"
-    choice = -1 # stores user's choice
-    while (choice != 0):
-        day = input("Enter weekday: ") # get weekday
-        start = int(input("Enter start time of availability that day: ")) # get start time
-        end = int(input("Enter end time of availability that day: ")) # get end time
-        db_cursor.execute(insert_data_query, (start, end, day)) # insert time-slot data into our table
-        db_conn.commit() # commit changes
-        choice = int(input("Select any number but 0 to keep going; select 0 to quit."))
-    
-    # create an employee who will have the availabilities in the table
-    id = random.randint(10000, 99999) # generates random 5-digit employee ID
-    emp = Employee("Manni", 23, "singhman@cwu.edu", id) # creates new employee
-    
-    # select all availabilities from table
-    select_all = """SELECT start_time, end_time, weekday FROM schedule"""
-    db_cursor.execute(select_all)
-    _timeslots_ = [(start_time, end_time, weekday) for start_time, end_time, weekday in db_cursor.fetchall()] # gets each timeslot and its weekday
-    for slot in _timeslots_:
-        emp.add_availability(slot[0], slot[1], slot[2]) # add each time slot to employee's schedule
-    print(emp)
+week = ("Monday", "Tuesday", "Wednesday", "Thursday", "Friday") # all the working days in a week
+
+def insert_employee(employees: list):
+    days = ("Monday", "Tuesday", "Wednesday", "Thursday", "Friday") # tuple of weekdays to iterate through
+    # step 1: read in the employee info (name, email, hours, employee ID, role, availabilities, etc.)
+    name = input("Employee Name: ")
+    age = input("Employee Age: ")
+    email = input("Employee Email: ")
+    ID = int(input("5-Digit Employee ID: "))
+    role = input("Employee Role: ")
+    hours = int(input("Hours per Day: "))
+    weekly_hours = int(input("Hours per Week: "))
+    # step 2: create an Employee obj with all the user-entered data so far
+    new_employee = Employee(name, age, role, email, ID, hours, weekly_hours)
+    # step 3: fill in the dictionary of employee's availabilities (key == weekday, value == timeslot(s) they're available that day)
+    for day in days:
+        start_time = int(input(f"Enter starting time for {day} (24-hr time): "))
+        end_time = int(input(f"Enter ending time for {day} (24-hr time):"))
+        new_employee.add_availability(start_time, end_time, day) # add employee's time slot to their list of time slots for that day
+    # step 4: add this employee to given 'employees' list
+    employees.append(new_employee)
+
+def add_to_schedule(EMP: Employee, day: str, SCHEDULE: dict):
+    # add the employee's shifts for the given day to the schedule
+    total_shifts = EMP.SHIFTS() # employee's 'availabilities' dictionary
+    today = total_shifts[day] # employee's shift for the given day -> a tuple (start_time, end_time)
+    role = EMP.ROLE() # employee's role
+    work_shift = workshift(today[0], today[1], day, role, EMP) # employee's work shift for that day
+    SCHEDULE[day].append(work_shift) # add employee's work shift for the given day to that day's list in the 'schedule' dictionary
+
+if __name__ == "__main__":
+    opening_time = 8 # store opens @ 8am
+    closing_time = 20 # store closes @ 8pm
+    # note for shifts: start time cannot be < opening time, end time cannot be > closing time
+    num_employees = int(input("Number of Employees at Company: ")) # num of employees working here
+    EMPLOYEES = [] # list of employees @ the company
+    # schedule of shifts (key: weekday, value: list of all employees' workshifts that day (list of 'workshift' objects))
+    schedule = {
+        "Monday": [],
+        "Tuesday": [],
+        "Wednesday": [],
+        "Thursday": [],
+        "Friday": []
+    }
+    for i in range(num_employees):
+        insert_employee(EMPLOYEES) # add each employee to 'EMPLOYEES' list
+    # add all employees to the schedule
+    for emp in EMPLOYEES:
+        # we will need to add all the available work shifts for each day of the week, so we'll need a nested for-loop
+        for day in week:
+            add_to_schedule(emp, day, schedule) # for each employee in the company, we'll add their available shifts for the whole week
+    # print the schedule
+    print("----------------------SCHEDULE----------------------")
+    for day, shifts in schedule.items():
+        print(day)
+        for shift in shifts:
+            print(shift) # print each work shift of the day, then move on to next day after the line
+        print("----------------------")
+
 '''
-
-#create schedule
 start = 8
 end = 18
 bias = [("Monday",12),("Tuesday",12),("Wednesday",13),("Thursday",12),("Friday",12),("Friday",14)]
 roles = [("Front", 2), ("Back",2)]
 
-employees = [Employee("Alice", 21, "Front", "Alice@Alice.Alice", 000001, 40, 8),
-             Employee("Bob", 23, "Front", "Alice@Alice.Alice", 000001, 24, 8),
-             Employee("Carol", 22, "Front", "Alice@Alice.Alice", 000001, 24, 8),
-             Employee("Dave", 21, "Back", "Alice@Alice.Alice", 000001, 40, 8),
-             Employee("Evelyn", 25, "Back", "Alice@Alice.Alice", 00001, 20, 4),
-             Employee("Guy", 22, "Back", "Alice@Alice.Alice", 000001, 20, 4)]
+employees = [Employee("Alice", 21, "Front", "Alice@Alice.Alice", 100001, 40, 8),
+             Employee("Bob", 23, "Front", "Alice@Alice.Alice", 200001, 24, 8),
+             Employee("Carol", 22, "Front", "Alice@Alice.Alice", 300001, 24, 8),
+             Employee("Dave", 21, "Back", "Alice@Alice.Alice", 400001, 40, 8),
+             Employee("Evelyn", 25, "Back", "Alice@Alice.Alice", 50001, 20, 4),
+             Employee("Guy", 22, "Back", "Alice@Alice.Alice", 600001, 20, 4)]
 
-e1 = Employee("Alice", 21, "Front", "Alice@Alice.Alice", 000001, 40, 8)
+e1 = employees[0] # this is Alice
     
 avail= [("Monday",8,18),("Tuesday",8,18),("Wednesday",8,18),("Thursday",8,18),("Friday",8,18),
         ("Monday",8,16),("Tuesday",8,16),("Wednesday",8,16),("Thursday",8,16),("Friday",8,16),
@@ -93,12 +111,12 @@ avail= [("Monday",8,18),("Tuesday",8,18),("Wednesday",8,18),("Thursday",8,18),("
 shifts = []
 
 for x in range(4):
-    employees[0].add_availability(avail[   x][0],avail[   x][1],avail[   x][2])
-    employees[1].add_availability(avail[ x+5][0],avail[ x+5][1],avail[ x+5][2])
-    employees[2].add_availability(avail[x+10][0],avail[x+10][1],avail[x+10][2])
-    employees[3].add_availability(avail[x+15][0],avail[x+15][1],avail[x+15][2])
-    employees[4].add_availability(avail[x+20][0],avail[x+20][1],avail[x+20][2])
-    employees[5].add_availability(avail[x+25][0],avail[x+25][1],avail[x+25][2])
+    employees[0].add_availability(avail[x][1],avail[x][2],avail[x][0]) 
+    employees[1].add_availability(avail[x+5][1],avail[x+5][2],avail[x+5][0]) 
+    employees[2].add_availability(avail[x+10][1],avail[x+10][2],avail[x+10][0]) 
+    employees[3].add_availability(avail[x+15][1],avail[x+15][2],avail[x+15][0]) 
+    employees[4].add_availability(avail[x+20][1],avail[x+20][2],avail[x+20][0]) 
+    employees[5].add_availability(avail[x+25][0],avail[x+25][1],avail[x+25][2]) 
     
 for x in employees:
     y = 0
@@ -126,6 +144,7 @@ for r in roles:
                         scheduled.append(s)
                         shifts.remove(s)
                         break
+'''
 
 #final pass, check that requirements are met
 
