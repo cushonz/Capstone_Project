@@ -351,7 +351,7 @@ class salesPredicter:
 class superEgo:
     def predict(self, sales:salesData, data:list):
         predictions = []
-        sales.setData()
+        sales.setData(data)
         for x in self.pop:
             x.data = sales
             predictions.append(x.predictSales())
@@ -372,10 +372,44 @@ class superEgo:
         self.pop[0].data = sales
         return self.pop[0].predictSales()
 
+        
+    def predictMock(self, sales:salesData):
+        predictions = []
+        sales.getData()
+        for x in self.pop:
+            x.data = sales
+            predictions.append(x.predictSales())
+        final = [0]*sales.daysToPredict
+        for x in predictions:
+            for y in range(len(x)):
+                final[y] += x[y]
+        
+        for x in range(len(final)):
+            final[x] /= len(self.pop)
+            final[x] = round(final[x])
+
+        return final
+
+    def predictTopMock(self, sales:salesData):
+        sales.getData()
+        self.pop.sort(key= lambda x: x.fit)
+        self.pop[0].data = sales
+        return self.pop[0].predictSales()
+
     def train(self, gens:int, pop:int, data:list):
         self.rand = Random()
         self.rand.seed()
         self.generate(pop, gens, data)
+        for x in range(gens):
+            last = self.adjust()
+            self.evaluate(last)
+            self.crossover()
+            self.mutate()
+    
+    def trainMock(self, gens:int, pop:int):
+        self.rand = Random()
+        self.rand.seed()
+        self.generateMock(pop, gens)
         for x in range(gens):
             last = self.adjust()
             self.evaluate(last)
@@ -445,15 +479,27 @@ class superEgo:
             self.pop.append(n)
         data.daysToPredict = 7
 
+    def generateMock(self, pop:int, gens:int):
+        data = salesData(gens+7+1, "", date.today() - timedelta(14+gens))
+        data.getData()
+        self.pop = []
+        for x in range(pop):
+            n = salesPredicter(data)
+            n.weekdayWeight = self.rand.random()
+            n.effectiveLastyearWeight = self.rand.random()
+            n.lastMonthWeight = self.rand.random()
+            self.pop.append(n)
+        data.daysToPredict = 7
+
 
 tommorow = date.today() + timedelta(1)
 
 super = superEgo()
 
-#super.train(200, 200)
+super.trainMock(200, 200)
 
-#print(super.predict(salesData(7, "", date.today())))
-#print(super.predictTop(salesData(7, "", date.today())))
+print(super.predictMock(salesData(7, "", date.today())))
+print(super.predictTopMock(salesData(7, "", date.today())))
 
 findit = salesData(7, "", date.today())
 findit.setData([0,2,3,4,5,6,0,
