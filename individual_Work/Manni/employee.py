@@ -27,13 +27,13 @@ class Employee:
     
     def is_available(self, day:str, hour:int) -> bool:
         if (self.availabilities[day][0] <= hour &
-            self.availabilities[day][0] <= hour):
+            self.availabilities[day][1] >= hour):
             return True
         return False
     
     def is_available(self, day:str, hourFrom:int, hourTo:int) -> bool:
         if (self.availabilities[day][0] <= hourFrom & 
-            self.availabilities[day][0] <= hourTo):
+            self.availabilities[day][1] >= hourTo):
             return True
         return False
 
