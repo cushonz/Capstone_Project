@@ -491,12 +491,38 @@ class superEgo:
             self.pop.append(n)
         data.daysToPredict = 7
 
+    def trainingSettings(self) -> list:
+        values = []
+        for x in self.pop:
+            values.append(x.LastyearWeight)
+            values.append(x.lastMonthWeight)
+            values.append(x.weekdayWeight)
+        return values
+    
+    def restoreTraining(self, values:list, daysToPredict:int, product:str, day:date):
+        x = 0
+        self.pop.clear()
+        while(x < len(values)):
+            c = salesPredicter(salesData(daysToPredict,product,day))
+            c.LastyearWeight = values[x]
+            c.lastMonthWeight = values[x+1]
+            c.weekdayWeight = values[x+2]
+            self.pop.append(c)
+            x+=3
+
+        pass
+
 
 tommorow = date.today() + timedelta(1)
 
 super = superEgo()
 
 super.trainMock(200, 200)
+
+print(super.predictMock(salesData(7, "", date.today())))
+print(super.predictTopMock(salesData(7, "", date.today())))
+
+super.restoreTraining(super.trainingSettings(),7,"",date.today)
 
 print(super.predictMock(salesData(7, "", date.today())))
 print(super.predictTopMock(salesData(7, "", date.today())))
