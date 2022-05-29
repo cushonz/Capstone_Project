@@ -3,6 +3,7 @@ import './Styles/main.css'
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Navbar from './Components/Navbar';
+import Sidebar from './Components/Sidebar';
 import HomePage from './Components/Home';
 
 import {
@@ -17,21 +18,27 @@ import FreshProducePage from './Components/FreshProduce';
 import EmployeesPage from './Components/Employees';
 import SchedulePage from './Components/Schedule';
 
-const App=()=>{
+const App=()=> {
 
     return (
         <Router>
-        <div className = "">
-            <Navbar/>
-            <Routes>
-                <Route path = "/schedule" element = {<SchedulePage/>} />
-                <Route path = "/employees" element = {<EmployeesPage/>} />
-                <Route path = "/fresh-produce" element = {<FreshProducePage/>} />
-                <Route path = "/settings" element = {<SettingsPage/>} />
-                <Route path = "/login" element = {<LoginPage/>} />
-                <Route path = "/sign-up" element = {<SignUpPage/>} />
-                <Route path = "/" element = {<HomePage/>} />
-            </Routes>
+        <div className = "App">
+            <div class="row" id="main-container">
+                <div class="col-md-2">
+                   <Sidebar/>
+                </div>
+                <div class="col-md-10">
+                    <Routes>
+                        <Route path = "/schedule" element = {<SchedulePage/>} />
+                        <Route path = "/employees" element = {<EmployeesPage/>} />
+                        <Route path = "/fresh-produce" element = {<FreshProducePage/>} />
+                        <Route path = "/settings" element = {<SettingsPage/>} />
+                        <Route path = "/login" element = {<LoginPage/>} />
+                        <Route path = "/sign-up" element = {<SignUpPage/>} />
+                        <Route path = "/" element = {<HomePage/>} />
+                    </Routes>
+                </div>
+            </div>
         </div>
         </Router>
     )
