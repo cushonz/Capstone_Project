@@ -34,7 +34,7 @@ export {
                     placeholder="Confirm new email"
                     name = "email confirm"
                 />
-                </Form.Group>  
+            </Form.Group>  
           
         </Modal.Body>
         <Modal.Footer>

@@ -17,6 +17,7 @@ import SettingsPage from './Components/Settings';
 import FreshProducePage from './Components/FreshProduce';
 import EmployeesPage from './Components/Employees';
 import SchedulePage from './Components/Schedule';
+import RolesPage from './Components/Roles'
 
 const App=()=> {
 
@@ -35,6 +36,7 @@ const App=()=> {
                         <Route path = "/settings" element = {<SettingsPage/>} />
                         <Route path = "/login" element = {<LoginPage/>} />
                         <Route path = "/sign-up" element = {<SignUpPage/>} />
+                        <Route path = "/roles" element = {<RolesPage/>} />
                         <Route path = "/" element = {<HomePage/>} />
                     </Routes>
                 </div>

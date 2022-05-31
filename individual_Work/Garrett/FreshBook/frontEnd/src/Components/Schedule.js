@@ -35,7 +35,6 @@ const SchedulePage=()=>{
           name: 'Adam',
           schedule: ['2PM-8PM', '4PM-10PM', '2PM-8PM', '10AM-2PM', '2PM-8PM', '6PM-10PM', '8AM-3PM']
         },
-        
     ]
 
     const Item = props => {
@@ -65,7 +64,8 @@ const SchedulePage=()=>{
                         id={item.id} 
                         name={item.name} 
                         schedule={item.schedule} 
-                    />) : [<p>No employees are found.</p>]
+                      />
+                ) : [<p>No employees are found.</p>]
                 }
             </WeeklyScheduleGrid>
         </div>
