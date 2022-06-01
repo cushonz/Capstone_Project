@@ -3,6 +3,7 @@ import {Form, Button, Row, Col} from 'react-bootstrap';
 import {EmailChangeModal, PasswordChangeModal} from './ChangeEmailModal.js';
 import 'bootstrap';
 import { ConstructionRounded } from '@mui/icons-material';
+import {useForm} from 'react-hook-form'
 
 
 function SettingsPage() {
