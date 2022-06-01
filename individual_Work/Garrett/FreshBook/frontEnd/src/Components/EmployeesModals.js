@@ -74,7 +74,7 @@ function EditEmployeeModal(props) {
             <Modal.Body>
                 <Form.Group>
                     <Form.Label><b>Name</b></Form.Label>
-                    <Form.Control placeholder={props.employeeName} name="employeeName"/>
+                    <Form.Control placeholder={props.name} name="employeeName"/>
                 </Form.Group>
                 <b></b>
                 <Form.Group>

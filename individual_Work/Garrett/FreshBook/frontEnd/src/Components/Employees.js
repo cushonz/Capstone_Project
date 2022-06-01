@@ -1,5 +1,6 @@
-import React from 'react'
-import {Form, Button, Accordion, Row, Col, Modal} from 'react-bootstrap'
+import { render } from '@testing-library/react'
+import React, {useContext, useState} from 'react'
+import {Form, Button, Accordion, Row, Col, Modal, AccordionContext} from 'react-bootstrap'
 import {NewEmployeeModal, EditEmployeeModal} from './EmployeesModals.js'
 
 const EmployeesPage=()=>{
@@ -27,7 +28,7 @@ const EmployeesPage=()=>{
 
     const employeeData = [
         {
-          id: 0,
+          id: '0',
           name: 'Nate',
           roles: ['Server', 'Chef'],
           weeklyhours: 40,
@@ -35,7 +36,7 @@ const EmployeesPage=()=>{
           profscore: 3
         },
         {
-          id: 1,
+          id: '1',
           name: 'Abdi',
           roles: ['Server', 'Chef'],
           weeklyhours: 40,
@@ -43,7 +44,7 @@ const EmployeesPage=()=>{
           profscore: 3
         },
         {
-          id: 2,
+          id: '2',
           name: 'Garrett',
           roles: ['Server', 'Chef'],
           weeklyhours: 40,
@@ -51,7 +52,7 @@ const EmployeesPage=()=>{
           profscore: 3
         },
         {
-          id: 3,
+          id: '3',
           name: 'Zach',
           roles: ['Server', 'Chef'],
           weeklyhours: 40,
@@ -59,7 +60,7 @@ const EmployeesPage=()=>{
           profscore: 3
         },
         {
-          id: 4,
+          id: '4',
           name: 'Manni',
           roles: ['Server', 'Chef'],
           weeklyhours: 40,
@@ -67,7 +68,7 @@ const EmployeesPage=()=>{
           profscore: 3
         },
         {
-          id: 5,
+          id: '5',
           name: 'Adam',
           roles: ['Server', 'Chef'],
           weeklyhours: 40,
@@ -78,11 +79,22 @@ const EmployeesPage=()=>{
 
     const [newEmployeeModalShow, setNewEmpoyeeModalShow] = React.useState(false);
     const [editEmployeeModalShow, setEditEmployeeModalShow] = React.useState(false);
+    const [empEventKey, setEmpEventKey] = React.useState('-1');
 
+    function getEventKey() {
+        return empEventKey;
+    }
 
-    const renderAccordion = (employee, index) => {
+    function renderEditModal(eventKey) {
+        console.log(eventKey)
         return (
-                <Accordion defaultActiveKey="0">
+            <EditEmployeeModal {...employeeData[eventKey]} show={editEmployeeModalShow} onHide={() => setEditEmployeeModalShow(false)}/>
+        )
+    }
+
+    function renderAccordion(employee) {
+        return (
+                <Accordion defaultActiveKey='0'>
                     <Accordion.Item eventkey={employee.id}>
                         <Accordion.Header>
                             {employee.name}
@@ -144,76 +156,13 @@ const EmployeesPage=()=>{
                                 </Col>
                             </Row>
                             <Row>
-                                <Button className="mb-2" onClick={() => setEditEmployeeModalShow(true)}>Edit Employee</Button>
+                                <Button className="mb-2" onClick={() => {setEmpEventKey(employee.id); setEditEmployeeModalShow(true)}}>Edit Employee</Button>
                             </Row>
                         </Accordion.Body>
-                        <EditEmployeeModal 
-                            show={editEmployeeModalShow} 
-                            onHide={() => setEditEmployeeModalShow(false)}
-                            employeeName={employee.name}
-                            roles ={employee.roles}
-                            weeklyHours={employee.weeklyHours}
-                            availability={employee.availability}
-                            profScore={employee.profScore}
-                        >
-                        </EditEmployeeModal>
                     </Accordion.Item>
                 </Accordion>
         )
     }
-
-    /*const Item = props => {
-        const {name, id, roles, availability, profScore} = props
-
-        return (
-        <Modal
-        size="lg"
-        aria-labelledby="contained-modal-title-vcenter"
-        centered
-        >
-            <Modal.Header closeButton>
-                <Modal.Title id="contained-modal-title-vcenter">
-                    Change Email
-                </Modal.Title>
-            </Modal.Header>
-            <Modal.Body>
-                <Form.Group>
-                    <Form.Label><b>Name</b></Form.Label>
-                    <Form.Control placeholder={name} name="employeeName"/>
-                </Form.Group>
-                <b></b>
-                <Form.Group>
-                    <Form.Label><b>Roles</b></Form.Label>
-                    <Form.Control placeholder={roles} name="roles"/>
-                </Form.Group>
-                <b></b>
-                <Form.Group>
-                        <Form.Label>Monday Availability</Form.Label>
-                        <Form.Control placeholder={availability[0]} name="monAvailability"/>
-                        <Form.Label>Tuesday Availability</Form.Label>
-                        <Form.Control placeholder={availability[1]} name="tueAvailability"/>
-                        <Form.Label>Wednesday Availability</Form.Label>
-                        <Form.Control placeholder={availability[2]} name="wedAvailability"/>
-                        <Form.Label>Thursday Availability</Form.Label>
-                        <Form.Control placeholder={availability[3]} name="thurAvailability"/>
-                        <Form.Label>Friday Availability</Form.Label>
-                        <Form.Control placeholder={availability[4]} name="friAvailability"/>
-                        <Form.Label>Saturday Availability</Form.Label>
-                        <Form.Control placeholder={availability[5]} name="satAvailability"/>
-                        <Form.Label>Sunday Availability</Form.Label>
-                        <Form.Control placeholder={availability[6]} name="tueAvailability"/>
-                </Form.Group>
-                <b></b>
-                <Form.Group>
-                    <Form.Label><b>Proficiency Rating</b></Form.Label>
-                    <Form.Control placeholder={profScore} name="profScore"/>
-                </Form.Group>
-                <b></b>
-                <Button className= 'md-2' type='submit'>Submit</Button>
-            </Modal.Body>
-        </Modal>
-        )
-  }*/
 
     return (
         <div className='employees container'>
@@ -222,6 +171,9 @@ const EmployeesPage=()=>{
             {employeeData.map(renderAccordion)}
             <Button className="mb-2" onClick={() => setNewEmpoyeeModalShow(true)}>Create Employee</Button>
             <NewEmployeeModal show={newEmployeeModalShow} onHide={() => setNewEmpoyeeModalShow(false)}/>
+            {empEventKey >= 0  && empEventKey < employeeData.length &&
+                renderEditModal(empEventKey)
+            }
         </div>
     )
 }
