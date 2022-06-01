@@ -69,7 +69,7 @@ const SignUpPage=()=>{
                         {errors.confirmPassword && <p style={{color:"red"}}><small>Confirm Password is required</small></p>}
                     </Form.Group>
                     <Form.Group>
-                        <Button as="sub" variant='primary' onClick={handleSubmit(submitForm)}>Sign Up</Button>
+                        <Button as="sub" className="mb-2" onClick={handleSubmit(submitForm)}>Sign Up</Button>
                     </Form.Group>
                     <br></br>
                     <Form.Group>

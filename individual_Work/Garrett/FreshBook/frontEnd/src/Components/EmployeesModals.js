@@ -52,7 +52,7 @@ function NewEmployeeModal(props) {
                     <Form.Control placeholder="Ex: 2.5" name="profScore"/>
                 </Form.Group>
                 <b></b>
-                <Button className= 'md-2' type='submit'>Submit</Button>
+                <Button className= 'mb-2' type='submit' onClick={props.onHide}>Submit</Button>
             </Modal.Body>
         </Modal>
     )
@@ -101,10 +101,10 @@ function EditEmployeeModal(props) {
                 <b></b>
                 <Form.Group>
                     <Form.Label><b>Proficiency Rating</b></Form.Label>
-                    <Form.Control placeholder={props.profScore} name="profScore"/>
+                    <Form.Control placeholder={props.profscore} name="profScore"/>
                 </Form.Group>
                 <b></b>
-                <Button className= 'md-2' type='submit'>Submit</Button>
+                <Button className= 'mb-2' type='submit' onClick={props.onHide}>Submit</Button>
             </Modal.Body>
         </Modal>
     )

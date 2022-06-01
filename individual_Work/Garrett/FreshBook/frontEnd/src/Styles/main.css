@@ -86,6 +86,15 @@
 .calendarTile {
     height: 80px;
     width: 80px;
+    color: black;
+    background-color: white;
+    border-color: #FF6868;
+}
+
+.calendarTile:hover {
+    background-color: #FF6868;
+    border-color: #FF6868;
+    color: white;
 }
 
 .invisibleTile:disabled {
@@ -95,8 +104,15 @@
     border-color: white;
 }
 
-.dayTile:disabled {
+.modInvisibleTile:disabled {
     height: 80px;
+    width: 425px;
+    background-color: white;
+    border-color: white;
+}
+
+.dayTile:disabled {
+    height: 50px;
     width: 80px;
     background-color: #000;
     border-color: #000;
@@ -104,11 +120,81 @@
 }
 
 .nameTile {
-    height: 80px;
+    height: 50px;
     width: 80px;
-    background-color: black;
-    border-color: black;
-    color: white;
+    background-color: #FF6868;
+    border-color: #FF6868;
+    color: black;
+}
+
+.nameTile:hover {
+    background-color: #FF6868;
+    border-color: #FF6868;
+    color: black;
+}
+
+.nameTile:active, .nameTile:target, .nameTile:focus, .nameTile:active:focus {
+    background-color: #FF6868;
+    border-color: #FF6868;
+    outline: red;
+    box-shadow: red;
+}
+
+.mb-2 {
+    background-color: #FF6868;
+    border-color: #FF6868;
+    color: black;
+}
+.mb-2:hover {
+    background-color: #FF6868;
+    border-color: #FF6868;
+    color: black;
+}
+
+.mb-2:active, .mb-2:target, .mb-2:focus, .mb-2:active:focus {
+    background-color: #FF6868;
+    border-color: #FF6868;
+    outline: red;
+    box-shadow: red;
+}
+
+.btn-lg {
+    background-color: #FF6868;
+    border-color: #FF6868;
+    color: black;
+}
+.btn-primary:hover, .btn-lg:hover {
+    background-color: #FF6868;
+    border-color: #FF6868;
+    color: black;
+}
+.btn-primary:active, .btn-primary:target, .btn-primary:focus, .btn-primary:active:focus, .btn-lg:active, .btn-lg:target, .btn-lg:focus, .btn-lg:active:focus {
+    background-color: #FF6868;
+    border-color: #FF6868;
+    outline: red;
+    box-shadow: red;
+}
+
+.addRoleRow {
+}
+
+.addRole {
+    height: 60px;
+    width: 80px;
+    background-color: #FF6868;
+    border-color: #FF6868;
+    color: black;
+}
+.addRole:hover, .addRole:hover {
+    background-color: #FF6868;
+    border-color: #FF6868;
+    color: black;
+}
+.addRole:active, .addRole:target, .addRole:focus, .addRole:active:focus, .addRole:active, .addRole:target, .addRole:focus, .addRole:active:focus {
+    background-color: #FF6868;
+    border-color: #FF6868;
+    outline: red;
+    box-shadow: red;
 }
 
 

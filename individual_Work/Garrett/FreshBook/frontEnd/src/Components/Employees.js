@@ -29,61 +29,57 @@ const EmployeesPage=()=>{
     const employeeData = [
         {
           id: '0',
-          name: 'Nate',
-          roles: ['Server', 'Chef'],
+          name: 'Joe',
+          roles: ['Chef'],
           weeklyhours: 40,
-          availability: ['2PM-8PM', '1PM-5PM', '10AM-4PM', '1PM-5PM', '2PM-10PM', 'off', 'off'],
+          availability: ['off', 'off', '9AM-4PM', '9AM-4PM', '9AM-9PM', '1PM-10PM', '2PM-9PM'],
           profscore: 3
         },
         {
           id: '1',
-          name: 'Abdi',
-          roles: ['Server', 'Chef'],
+          name: 'Jessica',
+          roles: ['Server'],
           weeklyhours: 40,
-          availability: ['2PM-8PM', '1PM-5PM', '10AM-4PM', '1PM-5PM', '2PM-10PM', 'off', 'off'],
+          availability: ['10AM-9PM', '10AM-9PM', '10AM-5PM', '10AM-9PM', '10AM-9PM', 'off', 'off'],
           profscore: 3
         },
         {
           id: '2',
-          name: 'Garrett',
-          roles: ['Server', 'Chef'],
+          name: 'Bart',
+          roles: ['Server'],
           weeklyhours: 40,
-          availability: ['2PM-8PM', '1PM-5PM', '10AM-4PM', '1PM-5PM', '2PM-10PM', 'off', 'off'],
+          availability: ['off', '10AM-5PM', '10AM-9PM', '10AM-9PM', 'off', '12PM-10PM', '10AM-9PM'],
           profscore: 3
         },
         {
           id: '3',
-          name: 'Zach',
-          roles: ['Server', 'Chef'],
+          name: 'Emanuel',
+          roles: ['Chef'],
           weeklyhours: 40,
-          availability: ['2PM-8PM', '1PM-5PM', '10AM-4PM', '1PM-5PM', '2PM-10PM', 'off', 'off'],
+          availability: ['9AM-9PM', 'off', 'off', '4PM-10PM', '9AM-9PM', '12PM-10PM', 'off'],
           profscore: 3
         },
         {
           id: '4',
-          name: 'Manni',
-          roles: ['Server', 'Chef'],
+          name: 'Lauren',
+          roles: ['Manager'],
           weeklyhours: 40,
-          availability: ['2PM-8PM', '1PM-5PM', '10AM-4PM', '1PM-5PM', '2PM-10PM', 'off', 'off'],
+          availability: ['10AM-9PM', '10AM-9PM', '10AM-9PM', '10AM-9PM', '10AM-9PM', '12PM-10PM', 'off'],
           profscore: 3
         },
         {
           id: '5',
-          name: 'Adam',
-          roles: ['Server', 'Chef'],
+          name: 'Tina',
+          roles: ['Server'],
           weeklyhours: 40,
-          availability: ['2PM-8PM', '1PM-5PM', '10AM-4PM', '1PM-5PM', '2PM-10PM', 'off', 'off'],
+          availability: ['10AM-8PM', 'off', 'off', '10AM-9PM', '2PM-10PM', '9AM-10PM', '9AM-10PM'],
           profscore: 3
         },
     ]
 
-    const [newEmployeeModalShow, setNewEmpoyeeModalShow] = React.useState(false);
+    const [newEmployeeModalShow, setNewEmployeeModalShow] = React.useState(false);
     const [editEmployeeModalShow, setEditEmployeeModalShow] = React.useState(false);
     const [empEventKey, setEmpEventKey] = React.useState('-1');
-
-    function getEventKey() {
-        return empEventKey;
-    }
 
     function renderEditModal(eventKey) {
         console.log(eventKey)
@@ -169,8 +165,8 @@ const EmployeesPage=()=>{
             <h1>Employees Page</h1>
             <br></br>
             {employeeData.map(renderAccordion)}
-            <Button className="mb-2" onClick={() => setNewEmpoyeeModalShow(true)}>Create Employee</Button>
-            <NewEmployeeModal show={newEmployeeModalShow} onHide={() => setNewEmpoyeeModalShow(false)}/>
+            <Button className="mb-2" onClick={() => setNewEmployeeModalShow(true)}>Create Employee</Button>
+            <NewEmployeeModal show={newEmployeeModalShow} onHide={() => setNewEmployeeModalShow(false)}/>
             {empEventKey >= 0  && empEventKey < employeeData.length &&
                 renderEditModal(empEventKey)
             }

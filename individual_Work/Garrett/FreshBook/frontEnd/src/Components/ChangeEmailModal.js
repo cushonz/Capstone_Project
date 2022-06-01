@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Modal, Button, Row, Col, Form} from 'react-bootstrap'
+import {CloseButton, Modal, Button, Row, Col, Form} from 'react-bootstrap'
 import {useForm} from 'react-hook-form'
 
 export {
@@ -11,18 +11,18 @@ export {
 
     const {register, watch, handleSubmit, reset, formState:{errors}} = useForm();
 
-    const submitEmailForm=(data)=>{
+  const submitEmailForm=(data)=>{
 
-      if(data.email === data.confirmEmail){
-          const body ={
-              email : data.email,
-          }
+    if(data.email === data.confirmEmail){
+      const body ={
+        email : data.email,
+      }
 
-          const requestOptions = {
-              method : "PUT",
-              headers : {'content-type' : 'application/json'},
-              body : JSON.stringify(body)
-          }
+      const requestOptions = {
+        method : "PUT",
+        headers : {'content-type' : 'application/json'},
+        body : JSON.stringify(body)
+      }
   
           fetch('/user/user/1', requestOptions)
           .then(res=>res.json())
@@ -68,7 +68,7 @@ export {
           
         </Modal.Body>
         <Modal.Footer>
-          <Button onClick={() => {handleSubmit(submitEmailForm)}}>Next</Button>
+          <Button className="mb-2" onClick={props.onHide}>Next</Button>
         </Modal.Footer>
       </Modal>
     );
@@ -138,7 +138,7 @@ export {
           
         </Modal.Body>
         <Modal.Footer>
-          <Button onClick={() => {handleSubmit(submitPasswordForm)}}>Next</Button>
+          <Button className="mb-2" onClick={props.onHide}>Next</Button>
         </Modal.Footer>
       </Modal>
     );

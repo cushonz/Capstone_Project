@@ -7,33 +7,33 @@ const SchedulePage=()=>{
     const employees = [
         {
           id: 0,
-          name: 'Nate',
-          schedule: ['2PM-8PM', '4PM-10PM', '2PM-8PM', '10AM-2PM', '2PM-8PM', '6PM-10PM', '8AM-3PM']
+          name: 'Joe',
+          schedule: ['off', 'off', '9AM-4PM', '9AM-4PM', '9AM-9PM', '1PM-10PM', '2PM-9PM']
         },
         {
           id: 1,
-          name: 'Abdi',
-          schedule: ['2PM-8PM', '4PM-10PM', '2PM-8PM', '10AM-2PM', '2PM-8PM', '6PM-10PM', '8AM-3PM']
+          name: 'Jessica',
+          schedule: ['10AM-9PM', '10AM-9PM', '10AM-5PM', '10AM-9PM', '10AM-9PM', 'off', 'off']
         },
         {
           id: 2,
-          name: 'Garrett',
-          schedule: ['2PM-8PM', '4PM-10PM', '2PM-8PM', '10AM-2PM', '2PM-8PM', '6PM-10PM', '8AM-3PM']
+          name: 'Bart',
+          schedule: ['off', '10AM-5PM', '10AM-9PM', '10AM-9PM', 'off', '12PM-10PM', '10AM-9PM']
         },
         {
           id: 3,
-          name: 'Zach',
-          schedule: ['2PM-8PM', '4PM-10PM', '2PM-8PM', '10AM-2PM', '2PM-8PM', '6PM-10PM', '8AM-3PM']
+          name: 'Emanuel',
+          schedule: ['9AM-9PM', 'off', 'off', '4PM-10PM', '9AM-9PM', '12PM-10PM', 'off']
         },
         {
           id: 4,
-          name: 'Manni',
-          schedule: ['2PM-8PM', '4PM-10PM', '2PM-8PM', '10AM-2PM', '2PM-8PM', '6PM-10PM', '8AM-3PM']
+          name: 'Lauren',
+          schedule: ['10AM-9PM', '10AM-9PM', '10AM-9PM', '10AM-9PM', '10AM-9PM', '12PM-10PM', 'off']
         },
         {
           id: 5,
-          name: 'Adam',
-          schedule: ['2PM-8PM', '4PM-10PM', '2PM-8PM', '10AM-2PM', '2PM-8PM', '6PM-10PM', '8AM-3PM']
+          name: 'Tina',
+          schedule: ['10AM-8PM', 'off', 'off', '10AM-9PM', '2PM-10PM', '9AM-10PM', '9AM-10PM']
         },
     ]
 
