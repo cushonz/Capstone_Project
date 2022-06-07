@@ -235,7 +235,6 @@ class salesData:
 
 class salesPredicter:
     weekdayMod = [0,0,0,0,0,0,0]
-    predictions = []
     fit = 0.0 #for training purposes
     LastyearWeight = 1
     weekdayWeight = 1
