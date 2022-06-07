@@ -40,7 +40,7 @@ class salesData:
         offset = (6-date.today().weekday())
         
         if len(data) > lastyear.days+7+offset:
-            self.dataLastYear = data[len(data) - (lastyear.days+7+self.daysToPredict): len(data)-lastyear.days:1] #the days from last year
+            self.dataLastYear = data[len(data) - (lastyear.days+7): len(data)-lastyear.days-self.daysToPredict:1] #the days from last year
         if len(data) > calced2.days+self.daysToPredict:
             self.dataLastMonth = data[calced2.days:len(data)-calced2.days-self.daysToPredict:1] #xth weekday of the previous month
         self.dataCurrent = data[len(data)-(daysSince.days+14+self.daysToPredict): len(data)-daysSince.days:1] #last 14 days + days that are being predicted
@@ -348,7 +348,7 @@ class salesPredicter:
         return result
 
 
-class superEgo:
+class SalesTrainer:
     def predict(self, sales:salesData, data:list):
         predictions = []
         sales.setData(data)
@@ -513,29 +513,28 @@ class superEgo:
         pass
 
 
-tommorow = date.today() + timedelta(1)
-
-super = superEgo()
-
-super.trainMock(200, 200)
-
-print(super.predictMock(salesData(7, "", date.today())))
-print(super.predictTopMock(salesData(7, "", date.today())))
-
-super.restoreTraining(super.trainingSettings(),7,"",date.today)
-
-print(super.predictMock(salesData(7, "", date.today())))
-print(super.predictTopMock(salesData(7, "", date.today())))
-
-findit = salesData(7, "", date.today())
-findit.setData([0,2,3,4,5,6,0,
-                0,2,3,4,5,6,0,
-                0,2,3,4,5,6,0,
-                0,2,3,4,5,6,0,
-                0,2,3,4])
-doit = salesPredicter(findit)
-it = doit.predictSales()
-print(it)
-pass
+#tommorow = date.today() + timedelta(1)
+#
+#super = SalesTrainer()
+#super.trainMock(200, 200)
+#
+#print(super.predictMock(salesData(7, "", date.today())))
+#print(super.predictTopMock(salesData(7, "", date.today())))
+#
+#super.restoreTraining(super.trainingSettings(),7,"",date.today)
+#
+#print(super.predictMock(salesData(7, "", date.today())))
+#print(super.predictTopMock(salesData(7, "", date.today())))
+#
+#findit = salesData(7, "", date.today())
+#findit.setData([0,2,3,4,5,6,0,
+#                0,2,3,4,5,6,0,
+#                0,2,3,4,5,6,0,
+#                0,2,3,4,5,6,0,
+#                0,2,3,4])
+#doit = salesPredicter(findit)
+#it = doit.predictSales()
+#print(it)
+#pass
 
 
