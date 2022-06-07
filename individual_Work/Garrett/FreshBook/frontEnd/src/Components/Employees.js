@@ -1,31 +1,10 @@
-import { render } from '@testing-library/react'
-import React, {useContext, useState} from 'react'
-import {Form, Button, Accordion, Row, Col, Modal, AccordionContext} from 'react-bootstrap'
+import React from 'react'
+import {Button, Accordion, Row, Col} from 'react-bootstrap'
 import {NewEmployeeModal, EditEmployeeModal} from './EmployeesModals.js'
 
 const EmployeesPage=()=>{
 
-   /* const createEmployee(data)=>{
-        const body ={
-            firstName : data.firstName,
-            lastName : data.lastName,
-        }
-
-        const requestOptions = {
-            method : "POST",
-            headers : {'content-type' : 'application/json'},
-            body : JSON.stringify(body)
-        }
-
-        fetch('/employee/employees', requestOptions)
-        .then(res=>res.json())
-        .then(data=>console.log(data))
-        .catch(err=>console.log(err))
-
-        reset();
-    }
-    */
-
+    //Sample data used in place of database data for demonstration purposes
     const employeeData = [
         {
           id: '0',
@@ -77,10 +56,12 @@ const EmployeesPage=()=>{
         },
     ]
 
+    //state variables for modals
     const [newEmployeeModalShow, setNewEmployeeModalShow] = React.useState(false);
     const [editEmployeeModalShow, setEditEmployeeModalShow] = React.useState(false);
     const [empEventKey, setEmpEventKey] = React.useState('-1');
 
+    //function called to open edit modal, passes employee data via props
     function renderEditModal(eventKey) {
         console.log(eventKey)
         return (
@@ -88,6 +69,7 @@ const EmployeesPage=()=>{
         )
     }
 
+    //function to dynamically render accordion object based on number of employees
     function renderAccordion(employee) {
         return (
                 <Accordion defaultActiveKey='0'>
@@ -160,6 +142,7 @@ const EmployeesPage=()=>{
         )
     }
 
+    //main page display
     return (
         <div className='employees container'>
             <h1>Employees Page</h1>
@@ -175,18 +158,3 @@ const EmployeesPage=()=>{
 }
 
 export default EmployeesPage;
-
-
-/*<EditEmployeeModal show={editEmployeeModalShow} onHide={() => setEditEmployeeModalShow(false)}>
-                {employeeData.length > 0 ? employeeData.map(item =>
-                    <Item
-                        key={item.id}
-                        name={item.name}
-                        id={item.id}
-                        roles={item.roles}
-                        availability={item.availability}
-                        profScore={item.profScore}
-                    />
-                ) : [<p>No employees are found.</p>]
-                }
-            </EditEmployeeModal>*/

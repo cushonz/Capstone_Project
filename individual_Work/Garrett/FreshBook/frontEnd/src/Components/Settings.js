@@ -2,14 +2,15 @@ import React from 'react';
 import {Form, Button, Row, Col} from 'react-bootstrap';
 import {EmailChangeModal, PasswordChangeModal} from './ChangeEmailModal.js';
 import 'bootstrap';
-import {useForm} from 'react-hook-form'
 
 
 function SettingsPage() {
+    //State variables
     const [emailModalShow, setEmailModalShow] = React.useState(false);
     const [passwordModalShow, setPasswordModalShow] = React.useState(false);
 
 
+    //Main page display
     return (
         <div className='settings container'>
         <div className='form'>

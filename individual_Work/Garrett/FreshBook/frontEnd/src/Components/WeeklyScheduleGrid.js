@@ -1,13 +1,14 @@
 import React from 'react';
-import {Row, Col, Container, Button} from 'react-bootstrap'
-import { findRenderedDOMComponentWithClass } from 'react-dom/test-utils';
+import {Row,Container, Button} from 'react-bootstrap'
 
+//function to format schedule buttons in a calendar-shaped grid
 const WeeklyScheduleGrid = ({colCount, children, md}) => {
 
     let rowCount = children.length
 
     let index = 0
 
+    //creates array of each employees work schedule starting with day of the week tiles at the top
     const renderRows = () => {
         let rows = []
 
@@ -26,6 +27,7 @@ const WeeklyScheduleGrid = ({colCount, children, md}) => {
             </Row>
         )
 
+        //pushes each row of employee data to array of rows to be displayed vertically
         for(let row = 0; row < rowCount; row++) {
             rows.push(
                 <Row className='Row'>

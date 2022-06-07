@@ -2,7 +2,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './Styles/main.css'
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Navbar from './Components/Navbar';
 import Sidebar from './Components/Sidebar';
 import HomePage from './Components/Home';
 

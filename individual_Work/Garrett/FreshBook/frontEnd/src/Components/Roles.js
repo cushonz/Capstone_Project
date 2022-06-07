@@ -3,6 +3,7 @@ import {Row, Button} from 'react-bootstrap'
 import {EditRoleModal, NewRoleModal} from './RolesModals';
 import WeeklyScheduleGrid from './WeeklyScheduleGrid.js'
 
+//Sample data for display purposes
 const RolesPage=()=>{
     const roles = [
         {
@@ -22,36 +23,40 @@ const RolesPage=()=>{
         },
     ]
 
-const [newRoleModalShow, setNewRoleModalShow] = React.useState(false);
-const [editRoleModalShow, setEditRoleModalShow] = React.useState(false);
-const [eventKeyX, setEventKeyX] = React.useState('-1');
-const [eventKeyY, setEventKeyY] = React.useState('-1');
+    //State variables
+    const [newRoleModalShow, setNewRoleModalShow] = React.useState(false);
+    const [editRoleModalShow, setEditRoleModalShow] = React.useState(false);
+    const [eventKeyX, setEventKeyX] = React.useState('-1');
+    const [eventKeyY, setEventKeyY] = React.useState('-1');
 
-function renderEditRoleModal(keyX, keyY) {
-    console.log(keyX)
-    console.log(keyY)
-    return (
-        <EditRoleModal quantity={roles[keyY].quantity[keyX]}  show={editRoleModalShow} onHide={() => setEditRoleModalShow(false)}/>
-    )
-}
+    //function to render Edit Role Modal on click
+    function renderEditRoleModal(keyX, keyY) {
+        console.log(keyX)
+        console.log(keyY)
+        return (
+            <EditRoleModal quantity={roles[keyY].quantity[keyX]}  show={editRoleModalShow} onHide={() => setEditRoleModalShow(false)}/>
+        )
+    }
 
-const Item = props => {
-    const {roleID, roleName, quantity} = props
+    //Creating Item to pass to modals for information display
+    const Item = props => {
+        const {roleID, roleName, quantity} = props
 
-    return (
-        <div className = 'role'>   
-            <Button className="nameTile">{roleName}</Button>
-            <Button className="calendarTile" onClick={() => {setEventKeyX(0); setEventKeyY(roleID); setEditRoleModalShow(true)}}>{quantity[0]}</Button> 
-            <Button className="calendarTile" onClick={() => {setEventKeyX(1); setEventKeyY(roleID); setEditRoleModalShow(true)}}>{quantity[1]}</Button> 
-            <Button className="calendarTile" onClick={() => {setEventKeyX(2); setEventKeyY(roleID); setEditRoleModalShow(true)}}>{quantity[2]}</Button>                   
-            <Button className="calendarTile" onClick={() => {setEventKeyX(3); setEventKeyY(roleID); setEditRoleModalShow(true)}}>{quantity[3]}</Button> 
-            <Button className="calendarTile" onClick={() => {setEventKeyX(4); setEventKeyY(roleID); setEditRoleModalShow(true)}}>{quantity[4]}</Button>
-            <Button className="calendarTile" onClick={() => {setEventKeyX(5); setEventKeyY(roleID); setEditRoleModalShow(true)}}>{quantity[5]}</Button>
-            <Button className="calendarTile" onClick={() => {setEventKeyX(6); setEventKeyY(roleID); setEditRoleModalShow(true)}}>{quantity[6]}</Button>   
-        </div>
-    )
-  }
+        return (
+            <div className = 'role'>   
+                <Button className="nameTile">{roleName}</Button>
+                <Button className="calendarTile" onClick={() => {setEventKeyX(0); setEventKeyY(roleID); setEditRoleModalShow(true)}}>{quantity[0]}</Button> 
+                <Button className="calendarTile" onClick={() => {setEventKeyX(1); setEventKeyY(roleID); setEditRoleModalShow(true)}}>{quantity[1]}</Button> 
+                <Button className="calendarTile" onClick={() => {setEventKeyX(2); setEventKeyY(roleID); setEditRoleModalShow(true)}}>{quantity[2]}</Button>                   
+                <Button className="calendarTile" onClick={() => {setEventKeyX(3); setEventKeyY(roleID); setEditRoleModalShow(true)}}>{quantity[3]}</Button> 
+                <Button className="calendarTile" onClick={() => {setEventKeyX(4); setEventKeyY(roleID); setEditRoleModalShow(true)}}>{quantity[4]}</Button>
+                <Button className="calendarTile" onClick={() => {setEventKeyX(5); setEventKeyY(roleID); setEditRoleModalShow(true)}}>{quantity[5]}</Button>
+                <Button className="calendarTile" onClick={() => {setEventKeyX(6); setEventKeyY(roleID); setEditRoleModalShow(true)}}>{quantity[6]}</Button>   
+            </div>
+        )
+    }
 
+    //main page display
     return (
         <div className='roles container'>
             <h1>Roles Page</h1>

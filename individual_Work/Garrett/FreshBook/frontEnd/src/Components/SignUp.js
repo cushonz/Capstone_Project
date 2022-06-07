@@ -4,12 +4,14 @@ import { Link } from 'react-router-dom'
 import {useForm} from 'react-hook-form'
 
 const SignUpPage=()=>{
+    //State variables
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [confirmPassword, setConfirmPassword] = useState('')
 
     const {register, watch, handleSubmit, reset, formState:{errors}} = useForm();
 
+    //function to submit form to backend for user sign up
     const submitForm=(data)=>{
 
         if(data.password === data.confirmPassword){
@@ -35,6 +37,7 @@ const SignUpPage=()=>{
         }
     }
 
+    //main page display
     return (
         <div className='sign-up container'>
             <div className='form'>

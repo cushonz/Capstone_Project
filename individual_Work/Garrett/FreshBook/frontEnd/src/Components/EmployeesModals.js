@@ -1,11 +1,13 @@
 import React from 'react'
 import {Form, Modal, Button} from 'react-bootstrap'
 
+//exporting Modal functions for use in Employees.js
 export {
     NewEmployeeModal,
     EditEmployeeModal
 }
 
+//function to display New Employee modal card
 function NewEmployeeModal(props) {
     return (
         <Modal
@@ -58,6 +60,7 @@ function NewEmployeeModal(props) {
     )
 }
 
+//function to display Edit Employee modal card. Uses props data for display of current employee information
 function EditEmployeeModal(props) {
     return (
         <Modal

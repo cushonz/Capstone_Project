@@ -1,18 +1,20 @@
 import React from 'react'
 import {Form, Modal, Button} from 'react-bootstrap'
 
+//Exporting modals for use in Roles.js
 export {
     EditRoleModal,
     NewRoleModal
 }
 
+//Display of EditRoleModal
 function EditRoleModal(props) {
     return (
         <Modal
-        {...props}
-        size="lg"
-        aria-labelledby="contained-modal-title-vcenter"
-        centered
+            {...props}
+            size="lg"
+            aria-labelledby="contained-modal-title-vcenter"
+            centered
         >
         <Modal.Header closeButton>
             <Modal.Title id="contained-modal-title-vcenter">
@@ -31,6 +33,7 @@ function EditRoleModal(props) {
     )
 }
 
+//Display of NewRoleModal
 function NewRoleModal(props) {
     return (
         <Modal

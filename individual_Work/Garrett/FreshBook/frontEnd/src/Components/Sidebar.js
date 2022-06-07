@@ -2,6 +2,7 @@ import React from "react";
 import '../Styles/main.css';
 import {SidebarData} from './SidebarData'
 
+//Sidebar display
 function Sidebar() {
     return (
         <div className="Sidebar">

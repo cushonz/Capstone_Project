@@ -3,17 +3,20 @@ import {Form, Button} from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 
 const LoginPage=()=>{
-const [email, setEmail] = useState('')
-const [password, setPassword] = useState('')
+    
+    //state variables
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
 
-const loginUser=()=>{
-    console.log(email);
-    console.log(password);
+    const loginUser=()=>{
+        console.log(email);
+        console.log(password);
 
-    setEmail('')
-    setPassword('')
-}
+        setEmail('')
+        setPassword('')
+    }
 
+    //main page display
     return (
         <div className='login container'>
             <div className='form'>
@@ -40,7 +43,7 @@ const loginUser=()=>{
                     </Form.Group>  
                     <br></br>
                     <Form.Group>
-                        <Button as="sub" variant='primary' onClick={loginUser}>Log In</Button>
+                        <Button as="sub" variant='primary' className="mb-2" onClick={loginUser}>Log In</Button>
                     </Form.Group>
                     <br></br>
                     <Form.Group>
