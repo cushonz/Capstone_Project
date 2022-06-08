@@ -1,3 +1,5 @@
+//  Written by Nate Goodman
+
 import React from 'react'
 import WeeklyScheduleGrid from './WeeklyScheduleGrid';
 import {Button} from 'react-bootstrap'

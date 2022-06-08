@@ -1,10 +1,18 @@
+# Written by Garrett Marshall
+# Schedule namespace
+
 from flask import request
 from flask_restx import Namespace, Resource, fields
 from flask_jwt_extended import jwt_required
-from models import Schedule
+from models import Schedule, PreferredOff, Availability, Employee
 from exts import db
 
 schedule_ns = Namespace('schedule', description = "A namespace for schedule")
+
+#TO DO:
+#      -Change the schedule algorithm to remove unecessary parameters and change parameters to work with information from 
+#       other namespaces
+#      -Once that is done, make a route to call the schedule algorithm and pass in info from other tables
 
 schedule_model = schedule_ns.model(
     "Schedule",

@@ -1,3 +1,6 @@
+# Written by Garrett Marshall
+# Authentication namespace
+
 from flask import make_response, request, jsonify
 from flask_restx import Resource, Namespace, fields
 from models import User

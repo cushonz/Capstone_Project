@@ -1,3 +1,5 @@
+//  Written by Nate Goodman
+
 import React from 'react';
 import {Form, Button, Row, Col} from 'react-bootstrap';
 import {EmailChangeModal, PasswordChangeModal} from './ChangeEmailModal.js';

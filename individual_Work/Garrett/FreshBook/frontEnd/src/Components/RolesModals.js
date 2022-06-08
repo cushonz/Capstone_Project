@@ -1,3 +1,5 @@
+//  Written by Nate Goodman
+
 import React from 'react'
 import {Form, Modal, Button} from 'react-bootstrap'
 

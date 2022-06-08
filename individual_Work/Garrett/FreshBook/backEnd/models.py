@@ -1,3 +1,6 @@
+# Written by Garrett Marshall
+# Database table schema is declared here with python classes
+
 from enum import unique
 from sqlalchemy import nullslast
 from exts import db

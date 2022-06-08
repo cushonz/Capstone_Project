@@ -1,3 +1,5 @@
+# Written by Manni Singh
+
 from calendar import week
 from employee import Employee
 

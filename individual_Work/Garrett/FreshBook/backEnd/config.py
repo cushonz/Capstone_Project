@@ -1,3 +1,6 @@
+# Written by Garrett Marshall
+# Different configs and their settings are declared here
+
 from decouple import config
 import os
 

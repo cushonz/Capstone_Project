@@ -1,3 +1,4 @@
+# Written by Manni Singh
 # This is a sample Python script.
 
 '''

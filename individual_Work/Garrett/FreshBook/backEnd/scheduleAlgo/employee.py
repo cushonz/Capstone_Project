@@ -1,3 +1,4 @@
+# Written by Manni Singh
 
 from calendar import week
 from operator import truediv

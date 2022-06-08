@@ -1,3 +1,6 @@
+# Written by Garrett Marshall
+# Declares initializes the app, declares config details, instantiates the back end api, final app state is returned
+
 from flask import Flask
 from flask_restx import Api
 from models import User, Employee, Availability, PreferredOff, Schedule

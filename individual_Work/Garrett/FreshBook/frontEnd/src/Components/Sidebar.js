@@ -1,3 +1,5 @@
+//  Written by Nate Goodman
+
 import React from "react";
 import '../Styles/main.css';
 import {SidebarData} from './SidebarData'

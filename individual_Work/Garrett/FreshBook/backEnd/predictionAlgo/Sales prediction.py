@@ -1,3 +1,4 @@
+# Written by Adam Jokela
 
 from bdb import effective
 from datetime import date, timedelta

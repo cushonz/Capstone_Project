@@ -1,3 +1,5 @@
+//  Written by Nate Goodman
+
 import React from 'react'
 import {Button, Accordion, Row, Col} from 'react-bootstrap'
 import {NewEmployeeModal, EditEmployeeModal} from './EmployeesModals.js'
