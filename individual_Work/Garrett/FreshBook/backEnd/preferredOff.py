@@ -32,8 +32,6 @@ class PreferredOffResource(Resource):
             
         data = request.get_json()
         new_preferred = PreferredOff(
-            empId = data.get('empId'),
-            prefId = data.get('prefId'),
             startTime = data.get('startTime'),
             endTime = data.get('endTime'),
             day= data.get('day')
@@ -58,7 +56,7 @@ class PreferredResource(Resource):
             
         preferred_to_update = PreferredOff.query.get_or_404(id)
         data = request.get_json()
-        preferred_to_update.update(data.get('empId'), data.get('prefId'), data.get('startTime'), data.get('endTime'), data.get('day'))
+        preferred_to_update.update(data.get('startTime'), data.get('endTime'), data.get('day'))
             
         return preferred_to_update
 

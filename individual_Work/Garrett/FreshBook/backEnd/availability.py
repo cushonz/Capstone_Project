@@ -32,8 +32,6 @@ class AvailabilitiesResource(Resource):
             
         data = request.get_json()
         new_availability = Availability(
-            empId = data.get('empId'),
-            availId = data.get('availId'),
             startTime = data.get('startTime'),
             endTime = data.get('endTime'),
             day= data.get('day')
@@ -58,7 +56,7 @@ class AvailabilityResource(Resource):
             
         availability_to_update = Availability.query.get_or_404(id)
         data = request.get_json()
-        availability_to_update.update(data.get('empId'), data.get('availId'), data.get('startTime'), data.get('endTime'), data.get('day'))
+        availability_to_update.update(data.get('startTime'), data.get('endTime'), data.get('day'))
             
         return availability_to_update
 

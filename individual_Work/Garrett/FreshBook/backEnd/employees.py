@@ -8,7 +8,7 @@ employee_ns = Namespace('employee', description = "A namespace for employees")
 employee_model = employee_ns.model(
     "Employee",
     {
-        "empId" : fields.Integer(),
+        "id" : fields.Integer(),
         "firstName" : fields.String(),
         "lastName" : fields.String(),
         "profRank" : fields.Integer()
@@ -31,7 +31,6 @@ class EmployeesResource(Resource):
         
         data = request.get_json()
         new_employee = Employee(
-            empId = data.get('empId'),
             firstName = data.get('firstName'),
             lastName = data.get('lastName'),
             profRank= data.get('profRank')
@@ -56,7 +55,7 @@ class EmployeeResource(Resource):
         
         employee_to_update = Employee.query.get_or_404(id)
         data = request.get_json()
-        employee_to_update.update(data.get('empId'), data.get('firstName'), data.get('lastName'), data.get('profRank'))
+        employee_to_update.update(data.get('firstName'), data.get('lastName'), data.get('profRank'))
         
         return employee_to_update
 
